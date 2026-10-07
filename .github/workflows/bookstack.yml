@@ -23,6 +23,7 @@ jobs:
 
       - name: Create BookStack page
         if: github.event.action == 'opened'
+        shell: cmd
         env:
           BOOKSTACK_URL: ${{ secrets.BOOKSTACK_URL }}
           BOOKSTACK_TOKEN_ID: ${{ secrets.BOOKSTACK_TOKEN_ID }}
