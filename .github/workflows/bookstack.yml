@@ -21,8 +21,7 @@ jobs:
         shell: cmd
         run: npm.cmd install marked --no-save
 
-      - name: Create BookStack page
-        if: github.event.action == 'opened'
+      - name: Sync BookStack page
         shell: cmd
         env:
           BOOKSTACK_URL: ${{ secrets.BOOKSTACK_URL }}
@@ -31,5 +30,7 @@ jobs:
           ISSUE_TITLE: ${{ github.event.issue.title }}
           ISSUE_BODY: ${{ github.event.issue.body }}
           ISSUE_URL: ${{ github.event.issue.html_url }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_ACTION: ${{ github.event.action }}
 
         run: node .github/scripts/bookstack-sync.js
